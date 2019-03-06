@@ -8,6 +8,21 @@
       
 </head>
 <body>
+	<div class="container">
+      	<div class="row">
+            	<h1>jQuery Bootstrap Ajax PHP autocomplete Demo</h1>
+                  <hr />
+		</div>
+            <div class="row">
+            	<div class="alert alert-block alert-success"></div>
+        	</div>
+            <div class="row">
+            	<h3>Demo</h3>
+                    <div class="well col-md-5">
+                    	<input id="demo" type="text" class="col-md-12 form-control" placeholder="Search cities..." autocomplete="off" />
+                    </div>
+            </div>
+      </div>
     <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
       <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       
@@ -15,6 +30,20 @@
       <script type="text/javascript">
 	 $(function()
 	 {
+		 function displayResult(item) {
+            $('.alert').show().html('You selected <strong>' + item.value + '</strong>');
+            }
+		
+		$('#demo').typeahead(
+		{
+			ajax: {
+			url: 'city_list.php',
+                  method: 'post',
+                  dataType: "json",
+			triggerLength: 1
+			},
+            	onSelect: displayResult
+		});
    });
 	</script>
 </body>
